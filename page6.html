@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Luxury Surprise 🎁✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Sacramento&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: radial-gradient(circle at center, #1f001f 0%, #080008 60%, #000000 100%);
+            color: #fff;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        .cinzel-title { font-family: 'Cinzel', serif; }
+        .cursive-text { font-family: 'Sacramento', cursive; }
+
+        /* Ultra Premium Floating Prompt */
+        .luxury-prompt {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.25), rgba(138, 43, 226, 0.25));
+            border: 2px solid rgba(255, 215, 0, 0.6);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 105, 180, 0.3);
+            animation: floatGlow 2.5s infinite ease-in-out;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .luxury-prompt:hover { transform: scale(1.05); }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+            50% { transform: translateY(-10px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+        }
+
+        /* Real 3D Gift Box */
+        .scene {
+            perspective: 1000px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .gift-box-3d {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gift-box-3d:hover {
+            transform: scale(1.08) rotateY(15deg) rotateX(-10deg);
+        }
+
+        .box-face {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, #ff1493, #8a2be2);
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            border-radius: 16px;
+            box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ribbon-v {
+            position: absolute;
+            width: 35px;
+            height: 100%;
+            background: linear-gradient(to right, #ffd700, #ffaa00);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+        .ribbon-h {
+            position: absolute;
+            height: 35px;
+            width: 100%;
+            background: linear-gradient(to bottom, #ffd700, #ffaa00);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+
+        .box-lid-3d {
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            width: 180px;
+            height: 45px;
+            background: linear-gradient(135deg, #ff4da6, #9b4dca);
+            border: 2px solid rgba(255, 215, 0, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            transition: all 0.6s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Opened Animation State */
+        .opened .box-lid-3d {
+            transform: translateY(-90px) rotate(-35deg) scale(0.9);
+            opacity: 0;
+        }
+        .opened .gift-box-3d {
+            transform: scale(0.8);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Luxury Surprises Container */
+        .surprises-wrapper {
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 420px;
+            width: 100%;
+            opacity: 0;
+            transform: scale(0.7);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: absolute;
+        }
+
+        .surprises-wrapper.show {
+            display: grid;
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+        }
+
+        .luxury-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            animation: cardAppear 0.5s ease forwards;
+        }
+
+        @keyframes cardAppear {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .luxury-card img {
+            width: 100%;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            margin-bottom: 8px;
+        }
+
+        /* Luxury Boarding Pass Ticket */
+        .luxury-ticket {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.25), rgba(138, 43, 226, 0.4));
+            border: 2px solid rgba(0, 229, 255, 0.7);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup Message -->
+    <div id="popupPrompt" class="luxury-prompt px-8 py-3 rounded-2xl mb-6 text-center" onclick="openLuxuryGift()">
+        <p class="cursive-text text-3xl text-pink-200">Tap to Open ✨</p>
+        <p class="cinzel-title text-xs text-yellow-300 font-bold tracking-widest uppercase">Click to open your luxury gift 🎁</p>
+    </div>
+
+    <!-- 3D Gift Box -->
+    <div class="scene" onclick="openLuxuryGift()">
+        <div id="giftBox" class="gift-box-3d">
+            <div class="box-lid-3d">
+                <span class="cursive-text text-2xl text-yellow-200">Bow 🎀</span>
+            </div>
+            <div class="box-face">
+                <div class="ribbon-v"></div>
+                <div class="ribbon-h"></div>
+                <span class="z-10 cinzel-title text-sm text-yellow-200 font-bold tracking-wider">SURPRISE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inside Surprises Grid with Real Pictures -->
+    <div id="surprisesContainer" class="surprises-wrapper">
+        
+        <!-- 1. Realistic Teddy Bear -->
+        <div class="luxury-card">
+            <img src="teddy.jpg" alt="Teddy Bear">
+            <h3 class="text-xs font-bold text-pink-200 cinzel-title">Teddy</h3>
+            <p class="text-[10px] text-pink-300 mt-0.5">Cute Like You! 🧸</p>
+        </div>
+
+        <!-- 2. Gajry & Flowers -->
+        <div class="luxury-card">
+            <img src="gajry.jpg" alt="Gajry & Flowers">
+            <h3 class="text-xs font-bold text-pink-200 cinzel-title">Your Deserve This</h3>
+            <p class="text-[10px] text-pink-300 mt-0.5">But its not possible for me 🌸</p>
+        </div>
+
+        <!-- 3. Royal Ring -->
+        <div class="luxury-card">
+            <img src="gift.jpg" alt="Diamond Ring">
+            <h3 class="text-xs font-bold text-pink-200 cinzel-title">Khaati Rehna</h3>
+            <p class="text-[10px] text-pink-300 mt-0.5">is k elawa toh koi kaam hy nh 🎀</p>
+        </div>
+
+        <!-- 4. Sweet Celebration Element -->
+        <div class="luxury-card">
+            <img src="images.jpg" alt="Happiness">
+            <h3 class="text-xs font-bold text-pink-200 cinzel-title">Endless Smiles</h3>
+            <p class="text-[10px] text-pink-300 mt-0.5">Pure happiness ahead! ✨</p>
+        </div>
+
+        <!-- 5. Oman Flight Ticket with Name -->
+        <div class="luxury-ticket">
+            <div class="flex justify-between items-center border-b border-cyan-400/30 pb-2 mb-2">
+                <span class="text-[11px] uppercase tracking-widest text-cyan-200 font-bold">✈️ FIRST CLASS TICKET</span>
+                <span class="text-xs text-yellow-300 font-bold">OMAN AIR 🇴🇲</span>
+            </div>
+            <div class="text-left space-y-1 my-2">
+                <p class="text-xs text-blue-100">Passenger: <strong class="text-white tracking-wider font-bold">Ms Maria</strong></p>
+                <p class="text-xs text-blue-100">Route: <strong class="text-yellow-200">Pakistan ➔ Muscat, Oman 🌴</strong></p>
+            </div>
+            <p class="text-[10px] text-cyan-200 italic mt-2 text-center">"A majestic journey designed for someone extremely special!"</p>
+             <p class="text-[10px] text-cyan-200 italic mt-2 text-center">"Please Rehan k Dada ka peecha chor dy ab"</p>
+        </div>
+
+    </div>
+
+    <!-- Confetti Library for side poppers -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function openLuxuryGift() {
+            const giftBox = document.getElementById('giftBox');
+            const scene = document.querySelector('.scene');
+            const popupMsg = document.getElementById('popupPrompt');
+            const container = document.getElementById('surprisesContainer');
+
+            // Trigger opening class
+            scene.classList.add('opened');
+            popupMsg.style.display = 'none';
+
+            // Show items after lid opens
+            setTimeout(() => {
+                scene.style.display = 'none';
+                container.classList.add('show');
+                triggerSidePoppers();
+            }, 400);
+        }
+
+        function triggerSidePoppers() {
+            // Heavy side-burst poppers effect
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 70,
+                    origin: { x: 0, y: 0.8 },
+                    colors: ['#ff1493', '#ffd700', '#00e5ff', '#ff69b4']
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 70,
+                    origin: { x: 1, y: 0.8 },
+                    colors: ['#ff1493', '#ffd700', '#00e5ff', '#ff69b4']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>

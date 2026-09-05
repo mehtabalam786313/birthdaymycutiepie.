@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Life Jawwwn Maria ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            /* Ultra-rich luxury midnight & rose velvet gradient */
+            background: radial-gradient(circle at center, #23081e 0%, #10030f 60%, #050107 100%);
+            color: #fff;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cursive-name {
+            font-family: 'Sacramento', cursive;
+        }
+        /* 3D Book Container */
+        .book-scene {
+            perspective: 1400px;
+            cursor: pointer;
+        }
+        .book {
+            width: 330px;
+            height: 480px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        @media(min-width: 640px) {
+            .book { width: 460px; height: 540px; }
+        }
+        /* Book Cover (Closed State) - Rich Rose Gold & Velvet Theme */
+        .book-cover {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #7a1c43 0%, #3a0921 50%, #1c0310 100%);
+            border: 3px solid rgba(255, 204, 229, 0.5);
+            border-radius: 14px 22px 22px 14px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.95), inset 0 0 40px rgba(255, 153, 204, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            transform-origin: left;
+            transition: transform 1.4s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.6s;
+            z-index: 10;
+        }
+        .book.open .book-cover {
+            transform: rotateY(-180deg);
+            box-shadow: -25px 25px 50px rgba(0,0,0,0.6);
+        }
+        /* Book Inside Pages - Elegant Champagne-Rose Tone */
+        .book-inside {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #320d22 0%, #180411 60%, #0c0209 100%);
+            border: 3px solid rgba(255, 204, 229, 0.5);
+            border-radius: 20px;
+            box-shadow: inset 0 0 70px rgba(255, 105, 180, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.9s ease 0.4s, transform 0.9s ease 0.4s;
+        }
+        .book.open .book-inside {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .popup-content {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.9s ease 0.7s;
+            width: 100%;
+        }
+        .book.open .popup-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 6px rgba(255,220,240,0.7)); }
+            50% { transform: scale(1.35); opacity: 1; filter: drop-shadow(0 0 18px rgba(255,102,178,0.9)); }
+        }
+        .sparkle-icon {
+            animation: sparkle 2.2s infinite ease-in-out;
+        }
+        /* Gorgeous Rose Gold Button Glow */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 105, 180, 0.8), 0 0 45px rgba(255, 182, 193, 0.5); }
+        }
+        .magical-btn {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+        .custom-cursor {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 105, 180, 0.4);
+            border: 2px solid #ff99cc;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Main Book Interactive Scene -->
+    <div class="book-scene" onclick="openBook()">
+        <div id="magicBook" class="book">
+            
+            <!-- BOOK COVER (Initially visible) -->
+            <div class="book-cover">
+                <div class="text-4xl mb-4 sparkle-icon">✨</div>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-wide mb-2 text-pink-100">A Special Day</h2>
+                <p class="text-xs text-pink-300/80 mb-6 uppercase tracking-widest font-semibold">Click anywhere on the book to open</p>
+                <div class="w-16 h-1 bg-pink-400/60 rounded-full shadow-[0_0_12px_#ff99cc]"></div>
+            </div>
+
+            <!-- BOOK INSIDE (Revealed after clicking & opening) -->
+            <div class="book-inside">
+                <div class="popup-content">
+                    <div class="text-3xl mb-1 sparkle-icon">💖</div>
+                    <span class="text-[11px] font-bold text-pink-200 uppercase tracking-widest bg-pink-600/20 px-4 py-1 rounded-full border border-pink-400/40 inline-block mb-3 shadow-[0_0_15px_rgba(255,105,180,0.25)]">
+                        Special Birthday Dedication
+                    </span>
+                    
+                    <!-- Clean Headings -->
+                    <h1 class="text-xl sm:text-2xl font-bold mb-1 tracking-wide whitespace-nowrap text-pink-50">
+                        Happy Birthday Dear
+                    </h1>
+                    <div class="cursive-name text-5xl sm:text-6xl text-pink-300 drop-shadow-[0_0_25px_rgba(255,105,180,0.8)] mb-3 leading-none">
+                        Maria
+                    </div>
+
+                    <p class="text-pink-200/90 text-xs sm:text-sm mb-5 font-medium leading-relaxed">
+                        Born on <span class="text-pink-300 font-bold">06 / Sep / 2009</span> 🎂 <br>
+                        You are my Whole World — because you are literally my entire life!
+                    </p>
+
+                    <!-- Attractive Action Button for Wishes -->
+                    <a href="page2.html" onclick="event.stopPropagation()" class="inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 text-white font-bold text-xs sm:text-sm magical-btn hover:scale-105 active:scale-95 transition-all duration-300 border border-white/35">
+                        <span>✨ Click for Best Wishes ✨</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function openBook() {
+            const book = document.getElementById('magicBook');
+            if(!book.classList.contains('open')) {
+                book.classList.add('open');
+            }
+        }
+
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+    </script>
+</body>
+</html>
